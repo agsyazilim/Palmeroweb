@@ -2,4 +2,4 @@
   "DataProvider": "sqlserver",
   "DataConnectionString": "Data Source=ASUSN56VZ;Initial Catalog=palmerodb;Integrated Security=False;Persist Security Info=False;User ID=sa;Password=123",
   "RawDataSettings": {}
-}udere@agsyazilim.com
+}
