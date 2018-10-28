@@ -1,0 +1,20 @@
+﻿@model CategoryNavigationModel
+
+    @if (Model.Categories.Count > 0)
+    {
+        
+            <h2 class="title-widget-post">@T("Categories")</h2>
+            <ul>
+                @foreach (var category in Model.Categories)
+                {
+                    var categoryLineModel = new CategoryNavigationModel.CategoryLineModel
+                    {
+                        CurrentCategoryId = Model.CurrentCategoryId,
+                        Category = category
+                    };
+                    @await Html.PartialAsync("_CategoryLine.Navigation", categoryLineModel)
+                }
+            </ul>
+
+        
+    }

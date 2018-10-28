@@ -1,0 +1,99 @@
+﻿@model IList<CategoryModel>
+@{
+    int index = 0;
+   
+}
+@if (Model.Count > 0)
+{
+    <div class="supper-deal6">
+        <div class="row">
+            <div class="col-md-3 col-sm-4 col-xs-12">
+                <div class="supperdeal-sidebar">
+                    <div class="supperdeal-header">
+                        <h2>@T("HomePage.Category.Header.Title")</h2>
+                    </div>
+                    <div class="supperdeal-tab">
+                        <ul>
+                            @foreach (var item in Model)
+                            {
+                                <li @if (index == 0) { <text> class="active" </text> }>
+                                    <a href="#@item.SeName" data-toggle="tab">
+                                        @item.Name
+                                    </a>
+
+                                </li>
+
+                                index++;
+                                
+                            }
+                           
+                        </ul>
+                    </div>
+                    <div class="item-adv-simple adv-home">
+                        <a href="#"><img alt="" src="@Model[0].PictureModel.FullSizeImageUrl"></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9 col-sm-8 col-xs-12">
+                <div class="tab-content">
+                    @{
+                        int index1 = 0;
+                        int tab = 0;
+                        int productindex = 0;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <!-- Tab @item.SeName -->
+                        <div role="tabpanel" @if (tab == 0) { <text> class="tab-pane fade  in active" </text>  } else { <text> class="tab-pane fade" </text> } id="@item.SeName">
+
+                            <div class="popular-cat-slider slider-home6">
+                                <div class="wrap-item">
+                                    @for (int i = index1; i < item.Products.Count; i++)
+                                    {
+
+                                        <!-- Productitem @index1 -->
+                                        <div class="item" data-id="@(index1 + 1)">
+                                            <!--product @productindex-->
+                                            @for (int j = productindex; j < item.Products.Count; j++)
+                                            {
+                                                @await Html.PartialAsync("_productBox", item.Products[index1])
+                                                productindex++;
+                                                index1++;
+                                                if (productindex % 2 == 0||index1==item.Products.Count)
+                                                {
+                                                    if (index1 == item.Products.Count)
+                                                    {
+                                                        productindex = 0;
+                                                        break;
+                                                    }
+                                                    productindex = 0;
+
+                                                    break;
+
+                                                }
+
+                                            }
+
+                                        </div>
+                                        <!--End. Product -->
+                                        if (index1 == item.Products.Count)
+                                        {
+                                            break;
+                                        }                                    }
+                                </div>
+                            </div>
+                        </div>
+                        index1=0;
+                        tab++;
+                    }
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+

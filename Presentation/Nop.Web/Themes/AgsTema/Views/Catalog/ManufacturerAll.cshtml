@@ -1,0 +1,63 @@
+﻿@model IList<ManufacturerModel>
+@{
+    Layout = "_ColumnsTwo";
+
+    //title
+    Html.AddTitleParts(T("PageTitle.Manufacturers").Text);
+    //page class
+    Html.AppendPageCssClassParts("html-manufacturer-list-page");
+}
+@section Breadcrumb
+    {
+    <ol class="breadcrumb no-hide">
+        <li>
+            <a href="@Url.RouteUrl("HomePage")" title="@T("Categories.Breadcrumb.Top")">@T("Categories.Breadcrumb.Top")</a>
+            @*<span class="delimiter">@breadcrumbDelimiter</span>*@
+        </li>
+        <li>
+            <a href="#" title="@Model.First().Name">@Model.First().Name</a>
+
+        </li>
+
+    </ol>
+
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.CategoryPageSlider, additionalData = Model })
+<div class="page manufacturer-list-page">
+    <div class="page-title">
+        <h1>@T("Manufacturers.List")</h1>
+    </div>
+    <div class="page-body">
+        <div class="bg-color-white mb-20">
+            <div class="row">
+                <div class="manufacturer-grid">
+                    <div class="item-grid">
+                        @foreach (var item in Model)
+                        {
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="mobile-access-box mobile-access-long ">
+                                    <div class="inner-item-paginav-featured">
+                                        <div class="item-box">
+                                            <div class="manufacturer-item">
+                                                <h2 class="title">
+                                                    <a href="@Url.RouteUrl("Manufacturer", new {SeName = item.SeName})" title="@item.PictureModel.Title">
+                                                        @item.Name
+                                                    </a>
+                                                </h2>
+                                                <div class="mobile-access-thumb">
+                                                    <a href="@Url.RouteUrl("Manufacturer", new {SeName = item.SeName})" title="@item.PictureModel.Title">
+                                                        <img alt="@item.PictureModel.AlternateText" src="@item.PictureModel.ImageUrl" title="@item.PictureModel.Title" />
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

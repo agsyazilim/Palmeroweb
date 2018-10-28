@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "_Root.Head";
+}
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyStartHtmlTagAfter })
+@await Html.PartialAsync("_Notifications")
+@await Html.PartialAsync("_JavaScriptDisabledWarning")
+@await Html.PartialAsync("_OldInternetExplorerWarning")
+<div class="wrap">
+
+    @await Html.PartialAsync("_Header")
+    <script asp-location="Footer">
+        AjaxCart.init(false, '.header-links .cart-qty', '.header-links .wishlist-qty', '#flyout-cart');
+    </script>
+    <!-- Content -->
+    <div id="content">
+        <div class="left-sidebar bg-color-grey">
+            <div class="container">
+                @if (IsSectionDefined("Breadcrumb"))
+                {
+                    @RenderSection("Breadcrumb")
+                }
+
+                <div class="row">
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentBefore })
+                    <!-- Container -->
+                    @RenderBody()
+                    <!-- End Container -->
+                    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.ContentAfter })
+                </div>
+            </div>
+        </div>
+
+    </div>
+    @await Component.InvokeAsync("Footer")
+    <script asp-location="Footer">
+        $(document).ready(function () {
+            if ($.cookie("slogan") == null) {
+                $.cookie("slogan", "open");
+            }
+            if ($.cookie("slogan") === "close") {
+                $('#myAlert').hide();
+            }
+        })
+
+
+    </script>
+</div>
+<!-- End Content -->
+
+@await Component.InvokeAsync("EuCookieLaw")
+@await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.BodyEndHtmlTagBefore })

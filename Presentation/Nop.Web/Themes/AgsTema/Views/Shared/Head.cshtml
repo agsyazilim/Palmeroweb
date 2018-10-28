@@ -1,0 +1,26 @@
+﻿@using Nop.Core
+@using Nop.Services.Helpers
+@using Nop.Web.Framework.UI
+@inject IWorkContext workContext
+@inject IThemeContext themeContext
+@inject IUserAgentHelper userAgentHelper
+@{
+    var themeName = themeContext.WorkingThemeName;
+    
+    //add main CSS file
+    Html.AppendCssFileParts("~/lib/lightbox/dist/css/lightbox.min.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/responsive.min.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/theme.min.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/slideshow/settings.min.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/owl.theme.min.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/owl.transitions.min.css");
+    Html.AppendCssFileParts($"~/Themes/{themeName}/Content/css/owl.carousel.min.css");
+    Html.AppendCssFileParts("~/lib/jquery-ui/jquery-ui-1.12.1.custom/jquery-ui.min.css");
+    Html.AppendCssFileParts($"/Themes/{themeName}/Content/css/bootstrap-theme.min.css");
+    Html.AppendCssFileParts($"/Themes/{themeName}/Content/css/bootstrap.min.css");
+    Html.AppendCssFileParts($"/Themes/{themeName}/Content/css/font-linearicons.min.css");
+    Html.AppendCssFileParts($"/Themes/{themeName}/Content/css/font-awesome.min.css");
+    Html.AppendCssFileParts($"/Themes/{themeName}/Content/css/font.min.css");
+
+
+}

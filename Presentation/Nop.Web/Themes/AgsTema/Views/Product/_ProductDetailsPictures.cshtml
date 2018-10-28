@@ -1,0 +1,40 @@
+﻿@model ProductDetailsModel
+
+@if (Model.PictureModels.Count > 0)
+{
+
+    <ul id="image-gallery" class="gallery list-unstyled cs-hidden">
+
+        @foreach (var picture in Model.PictureModels)
+        {
+
+            <li data-thumb="@picture.FullSizeImageUrl">
+                <a class="example-image-link" href="@picture.FullSizeImageUrl" data-lightbox="example-set">
+                    <img class="example-image" src="@picture.FullSizeImageUrl" alt="@picture.AlternateText" title="@picture.Title" itemprop="image" />
+                </a>
+            </li>
+
+        }
+    </ul>
+    <script asp-location="Footer">
+        var sliderjs = $.noConflict(true);
+        sliderjs(document).ready(function () {
+            sliderjs("#content-slider").lightSlider({
+                loop: true,
+                keyPress: true
+            });
+            sliderjs('#image-gallery').lightSlider({
+                gallery: true,
+                item: 1,
+                thumbItem: 6,
+                slideMargin: 0,
+                speed: 200,
+                auto: false,
+                loop: true,
+                onSliderLoad: function () {
+                    $('#image-gallery').removeClass('cS-hidden');
+                }
+            });
+        });
+    </script>
+}

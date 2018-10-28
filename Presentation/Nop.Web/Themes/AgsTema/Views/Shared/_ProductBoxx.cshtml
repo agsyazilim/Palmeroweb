@@ -1,0 +1,49 @@
+﻿@model ProductOverviewModel
+@using Nop.Core
+@using Nop.Core.Domain.Catalog
+@inject CatalogSettings catalogSettings
+@inject IWorkContext workContext
+
+<div class="item-hot-deal-product" data-productid="@Model.Id">
+    <div class="hot-deal-product-thumb">
+        <div class="product-thumb">
+            <a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})" title="@Model.DefaultPictureModel.Title">
+                <img alt="@Model.DefaultPictureModel.AlternateText" src="@Model.DefaultPictureModel.ImageUrl" title="@Model.DefaultPictureModel.Title" class="first-thumb" />
+            </a>
+        </div>
+    </div>
+    <div class="product-info5">
+        <h3 class="title-product"><a href="@Url.RouteUrl("Product", new {SeName = Model.SeName})">
+    @CommonHelper.EnsureMaximumLength(Model.Name, 35, "..")
+</a></h3>
+        <ul>
+            
+                @if (!string.IsNullOrEmpty(Model.ProductPrice.OldPrice))
+                {
+                    <li>
+                         <span class="percent-sale">% @Model.ProductPrice.Discount</span>
+                    </li>
+                }
+            
+            <li>
+                <div class="info-price">
+                    @if (!string.IsNullOrEmpty(Model.ProductPrice.OldPrice))
+                    {
+                        <del>@Model.ProductPrice.OldPrice.Replace("₺", "TL")</del>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.ProductPrice.Price))
+                    {
+                        <span>@Model.ProductPrice.Price.Replace("₺", "TL") </span>
+                    }
+                    else
+                    {
+                        <span>@Model.ProductPrice.Price </span>
+
+                    }
+                </div>
+
+            </li>
+        </ul>
+    </div>
+</div>

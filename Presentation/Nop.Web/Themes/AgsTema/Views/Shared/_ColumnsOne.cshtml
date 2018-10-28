@@ -1,0 +1,23 @@
+﻿@{
+    Layout = "_Root";
+}
+
+<div id="content" class="bg-color-grey">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnBefore })
+    @if (IsSectionDefined("Breadcrumb"))
+    {
+        @section Breadcrumb {
+            @RenderSection("Breadcrumb")
+        }
+    }
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+
+                @RenderBody()
+                @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnAfter })
+            </div>
+        </div>
+    </div>
+</div>
+

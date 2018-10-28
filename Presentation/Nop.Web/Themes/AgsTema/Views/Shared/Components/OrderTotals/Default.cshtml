@@ -1,0 +1,194 @@
+﻿@model OrderTotalsModel
+<div class="table-responsive">
+
+    <table class="table" cellspacing="0">
+        <tbody>
+            <tr class="cart-subtotal">
+                <th class="cart-total-left">
+                    @T("ShoppingCart.Totals.SubTotal"):
+                </th>
+                <td class="cart-total-right">
+                    <strong class="amount">
+                        @if (!string.IsNullOrEmpty(Model.SubTotal))
+                        {
+                            @string.Format("{0} TL", Model.SubTotal.Substring(1))
+                        }
+
+                    </strong>
+                </td>
+            </tr>
+            @if (!string.IsNullOrEmpty(Model.SubTotalDiscount))
+            {
+                <tr class="cart-subtotal">
+                    <th class="cart-total-left">
+                        @T("ShoppingCart.Totals.SubTotalDiscount"):
+                    </th>
+                    <td class="cart-total-right">
+                        <strong class="value-summary">
+
+                            @if (!string.IsNullOrEmpty(Model.SubTotalDiscount))
+                            {
+
+
+                                @string.Format("{0} TL", Model.SubTotalDiscount.Substring(1))
+
+                            }
+
+
+                        </strong>
+                    </td>
+                </tr>
+            }
+            @if (!Model.HideShippingTotal)
+            {
+                <tr class="cart-subtotal">
+                    <th class="cart-total-left">
+                        @T("ShoppingCart.Totals.Shipping"):
+                        @if (Model.RequiresShipping && !string.IsNullOrEmpty(Model.SelectedShippingMethod))
+                        {
+                            <span class="selected-shipping-method">@T("ShoppingCart.Totals.Shipping.Method", Model.SelectedShippingMethod)</span>
+                        }
+                    </th>
+                    <td class="cart-total-right">
+                        @if (Model.RequiresShipping)
+                        {
+                            if (!string.IsNullOrEmpty(Model.Shipping))
+                            {
+                                <span class="value-summary">
+                                    @if (!string.IsNullOrEmpty(Model.Shipping))
+                                    {
+                                        @string.Format("{0} TL", Model.Shipping.Substring(1))
+                                    }
+
+                                </span>
+                            }
+                            else
+                            {
+                                <span>@T("ShoppingCart.Totals.CalculatedDuringCheckout")</span>
+                            }
+                        }
+                        else
+                        {
+                            <span>@T("ShoppingCart.Totals.Shipping.NotRequired")</span>
+                        }
+                    </td>
+                </tr>
+            }
+            @if (!string.IsNullOrEmpty(Model.PaymentMethodAdditionalFee))
+            {
+                <tr class="cart-subtotal">
+                    <th class="cart-total-left">
+                        @T("ShoppingCart.Totals.PaymentMethodAdditionalFee"):
+                    </th>
+                    <td class="cart-total-right">
+                        <span class="value-summary">@Model.PaymentMethodAdditionalFee.Substring(1)</span>
+                    </td>
+                </tr>
+            }
+            @if (Model.DisplayTaxRates && Model.TaxRates.Count > 0)
+            {
+                foreach (var taxRate in Model.TaxRates)
+                {
+                    <tr class="cart-subtotal">
+                        <th class="cart-total-left">
+                            @string.Format(T("ShoppingCart.Totals.TaxRateLine").Text, taxRate.Rate):
+                        </th>
+                        <td class="cart-total-right">
+                            <span>@taxRate.Value</span>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.DisplayTax)
+            {
+                <tr class="cart-subtotal">
+                    <th class="cart-total-left">
+                        @T("ShoppingCart.Totals.Tax"):
+                    </th>
+                    <td class="cart-total-right">
+                        <span class="value-summary">@Model.Tax.Substring(1) TL</span>
+                    </td>
+                </tr>
+            }
+            @if (!string.IsNullOrEmpty(Model.OrderTotalDiscount))
+            {
+                <tr class="cart-subtotal">
+                    <th class="cart-total-left">
+                        @T("ShoppingCart.Totals.OrderTotalDiscount"):
+                    </th>
+                    <td class="cart-total-right">
+                        <span class="value-summary">@Model.OrderTotalDiscount.Substring(1) TL</span>
+                    </td>
+                </tr>
+            }
+            @if (Model.GiftCards.Count > 0)
+            {
+                foreach (var gc in Model.GiftCards)
+                {
+                    <tr class="cart-subtotal">
+                        <th class="cart-total-left">
+                            @T("ShoppingCart.Totals.GiftCardInfo"):
+                            <span>@T("ShoppingCart.Totals.GiftCardInfo.Code", gc.CouponCode)</span>
+                            @if (Model.IsEditable)
+                            {
+                                //little hack here with empty "value" element
+                                <input type="submit" name="removegiftcard-@gc.Id" value=" " title="@T("Common.Remove")" class="remove-gift-card-button" />
+                            }
+                            <span class="giftcard-remaining">@string.Format(T("ShoppingCart.Totals.GiftCardInfo.Remaining").Text, gc.Remaining)</span>
+                        </th>
+                        <td class="cart-total-right">
+                            <span class="value-summary">@gc.Amount.Substring(1) TL</span>
+                        </td>
+                    </tr>
+                }
+            }
+            @if (Model.RedeemedRewardPoints > 0)
+            {
+                <tr class="cart-subtotal">
+                    <th class="cart-total-left">
+                        @string.Format(T("ShoppingCart.Totals.RewardPoints").Text, Model.RedeemedRewardPoints):
+                    </th>
+                    <td class="cart-total-right">
+                        <strong class="value-summary">
+                            @Model.RedeemedRewardPointsAmount.Substring(1) TL
+                        </strong>
+                    </td>
+                </tr>
+            }
+            <tr class="cart-subtotal">
+                <th class="cart-total-left">
+                    @T("ShoppingCart.Totals.OrderTotal"):
+                </th>
+                <td class="cart-total-right">
+                    @if (!string.IsNullOrEmpty(Model.OrderTotal))
+                    {
+                        <span class="value-summary">
+                            <strong>
+                                @if (!string.IsNullOrEmpty(Model.OrderTotal))
+                                {
+                                    @String.Format("{0} TL",Model.OrderTotal.Substring(1))
+                                }
+
+                            </strong>
+                        </span>
+                    }
+                    else
+                    {
+                        <span>@T("ShoppingCart.Totals.CalculatedDuringCheckout")</span>
+                    }
+                </td>
+            </tr>
+            @if (Model.WillEarnRewardPoints > 0)
+            {
+                <tr class="cart-subtotal">
+                    <th class="cart-total-left">
+                        @T("ShoppingCart.Totals.RewardPoints.WillEarn"):
+                    </th>
+                    <td class="cart-total-right">
+                        <strong class="value-summary">@string.Format(T("ShoppingCart.Totals.RewardPoints.WillEarn.Point").Text, Model.WillEarnRewardPoints)</strong>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,58 @@
+﻿<div id="header">
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderBefore })
+    <!-- Cargo Top Menu -->
+    <div id="myAlert" role="alert" class="qc-top-site qc-top-site1 alert  fade in" style="background-image: url(/images/bg-qc-top.jpg); background-position: center center;">
+        <button type="button" class="close bt-white" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <div class="container">
+            <div class="description">@T("header.slogan")</div>
+        </div>
+    </div>
+    <script asp-location="Footer">
+
+        $('#myAlert').on('closed.bs.alert', function () {
+            // do something…
+            if ($.cookie("slogan") === "open") {
+                    $.cookie("slogan", "close",{expires:1});
+            }
+            $('#myAlert').hide();
+        })
+    </script>
+    <!-- End Cargo Top Menu -->
+    @await Component.InvokeAsync("AdminHeaderLinks")
+    <!-- Header -->
+    <div class="header">
+        <div class="container">
+            <div class="header-main">
+                <div class="row">
+                    <div class="col-md-3 col-sm-3 col-xs-12">
+                       
+                        <div class="logo">
+                            @await Component.InvokeAsync("Logo")
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="smart-search">
+                            @await Component.InvokeAsync("SearchBox")
+                        </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-4 col-xs-12">
+                        <div class="wrap-register-cart">
+                            @await Component.InvokeAsync("HeaderLinks")
+                        
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Header -->
+    @await Component.InvokeAsync("TaxTypeSelector")
+    @await Component.InvokeAsync("CurrencySelector")
+    @await Component.InvokeAsync("LanguageSelector")
+    
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMiddle })
+    @await Component.InvokeAsync("TopMenu")
+    @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderAfter })
+</div>

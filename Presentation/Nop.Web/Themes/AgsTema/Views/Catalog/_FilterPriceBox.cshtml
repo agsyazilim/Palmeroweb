@@ -1,0 +1,122 @@
+﻿@using Nop.Core
+@model CatalogPagingFilteringModel.PriceRangeFilterModel
+@{
+    var selectedItem = Model.Items.FirstOrDefault(x => x.Selected);
+    var min = "";
+    var max = "";
+    if (Model.Enabled)
+    {
+        min = Model.Items.First().To.Substring(1).Replace(",00","").Replace(".","");
+        max = Model.Items.Last().From.Substring(1).Replace(",00","").Replace(".","");
+
+    }
+}
+@inject IWebHelper WebHelper
+@functions{
+
+    public string FormatPriceRangeText(CatalogPagingFilteringModel.PriceRangeFilterItem filterItem)
+    {
+        var rangeText = "";
+        if (string.IsNullOrWhiteSpace(filterItem.From))
+        {
+            rangeText = string.Format(T("Filtering.PriceRangeFilter.Under").Text, $"<span class=\"PriceRange\">{filterItem.To}</span>");
+        }
+        else if (string.IsNullOrWhiteSpace(filterItem.To))
+        {
+            rangeText = string.Format(T("Filtering.PriceRangeFilter.Over").Text, $"<span class=\"PriceRange\">{filterItem.From}</span>");
+        }
+        else
+        {
+            rangeText = $"<span class=\"PriceRange\">{filterItem.From}</span> - <span class=\"PriceRange\">{filterItem.To}</span>";
+        }
+        return rangeText;
+    }
+}
+@if (Model.Enabled)
+{
+    <div class="product-filter price-range-filter" style="display: none">
+        <div class="filter-title">
+            <strong>@T("Filtering.PriceRangeFilter")</strong>
+        </div>
+        <div class="filter-content">
+            @if (selectedItem == null)
+            {
+                <div class="available-items">
+                    <ul class="group price-range-group">
+                        @foreach (var item in Model.Items)
+                        {
+                            <li><a id="item_@Model.Items.IndexOf(item)" href="@item.FilterUrl">@Html.Raw(FormatPriceRangeText(item))</a></li>
+                        }
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <div class="filtered-items">
+                    <span class="item">@Html.Raw(FormatPriceRangeText(selectedItem))</span>
+                </div>
+                <div class="remove-filter">
+                    <a id="removefilter" href="@Model.RemoveFilterUrl">@T("Filtering.PriceRangeFilter.Remove")</a>
+                </div>
+            }
+        </div>
+
+    </div>
+    <button class="accordion active">Fiyat'a Göre Filitrele</button>
+    <div class="panel" style="display:block;">
+        <p class="filitre">
+            <div class="range-filter">
+                <div id="amount">
+
+                </div>
+                <div id="slider-range" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all">
+                    <div class="ui-slider-range ui-widget-header ui-corner-all" style="left: 14%; width: 56%;"></div>
+                    <span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 14%;">
+                    </span><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 70%;"></span>
+                </div>
+            </div>
+        </p>
+    </div>
+}
+
+<script asp-location="Footer">
+	$(document).ready(function() {
+		if ($('.range-filter').length > 0) {
+			$(".range-filter #slider-range").slider({
+				range: true,
+				min: @min,
+				max: @max,
+				values: [@min, @max],
+				change: function(events, ui) {
+					var href;
+					var selecteditem = $('#removefilter').attr('href');
+					if (selecteditem !== undefined) {
+						window.location.href = selecteditem;
+					} else {
+						if (ui.values[0] <= @min) {
+							href = $('#item_0').attr('href');
+							window.location.href = href;
+						} else if (ui.values[0] > @min && ui.values[1] < @max) {
+							href = $('#item_1').attr('href');
+							window.location.href = href;
+						} else if (ui.values[1] >= @max) {
+							href = $('#item_2').attr('href');
+							window.location.href = href;
+						}
+					}
+				},
+				slide: function(event, ui) {
+					$("#amount")
+						.html("<span>" + ui.values[0] + "</span>" + " - " + "<span>" + ui.values[1] + "</span>");
+
+				}
+
+			});
+			$(".range-filter #amount").html("<span>" + $("#slider-range").slider("values", 0) + "</span>" + " - " + "<span>" + $("#slider-range").slider("values", 1) +
+				"</span>");
+
+		}
+
+	});
+</script>
+

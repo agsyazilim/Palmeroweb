@@ -1,0 +1,189 @@
+﻿@model TopMenuModel.CategoryLineModel
+
+
+@if (Model.Category.SubCategories.Count > 0 && !Model.Category.MegaMenu)
+{
+
+    <li class="menu-item-has-children">
+        <a href="@Url.RouteUrl("Category", new {SeName = Model.Category.SeName})">
+            <span>@Model.Category.Name</span>
+           
+        </a>
+        @{
+            //subcategories
+            var subCategories = Model.ResponsiveMobileMenu ?
+                //responsive (all categories)
+                Model.Category.SubCategories :
+                //standard design (only categories with "IncludeInTopMenu")
+                Model.Category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
+            if (subCategories.Count > 0)
+            {
+                <ul class="sub-menu">
+                    @foreach (var subCategory in subCategories)
+                    {
+                        if (subCategory.SubCategories.Any())
+                        {
+                            <li class="menu-item-has-children">
+                                <a href="@Url.RouteUrl("Category", new {SeName = subCategory.SeName})">
+                                    @subCategory.Name
+                                    @if (subCategory.NumberOfProducts.HasValue)
+                                    {
+                                        <text> </text>@T("Categories.TotalProducts", subCategory.NumberOfProducts.Value)
+                                    }
+                                </a>
+                                <ul class="sub-menu">
+                                    @foreach (var item in subCategory.SubCategories)
+                                    {
+                                        <li>
+                                            <a href="@Url.RouteUrl("Category", new {SeName = item.SeName})">
+                                                @item.Name
+                                                
+                                            </a>
+
+                                        </li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a href="@Url.RouteUrl("Category", new {SeName = subCategory.SeName})">
+                                    @subCategory.Name
+                                    
+                                </a>
+
+                            </li>
+                        }
+
+
+
+
+
+                    }
+                </ul>
+            }
+        }
+    </li>
+
+}
+else if (Model.Category.SubCategories.Count > 0 && Model.Category.MegaMenu)
+{
+
+    <li class="has-mega-menu">
+        <a href="@Url.RouteUrl("Category", new {SeName = Model.Category.SeName})">
+            <span>@Model.Category.Name</span>
+            
+        </a>
+        <div class="mega-menu">
+            <div class="row">
+                <div class="col-md-7 col-sm-7 col-xs-12">
+                    @{ //subcategories
+                        var subCategories = Model.ResponsiveMobileMenu ?
+                            //responsive (all categories)
+                            Model.Category.SubCategories :
+                            //standard design (only categories with "IncludeInTopMenu")
+                            Model.Category.SubCategories.Where(x => x.IncludeInTopMenu).ToList();
+
+                        if (subCategories.Count > 0)
+                        {
+                            foreach (var subCategory in subCategories)
+                            {
+                                <div class="mega-adv">
+                                    <div class="mega-adv-info">
+                                        <h3>
+                                            <a class="color-orange" href="@Url.RouteUrl("Category", new {SeName = subCategory.SeName})">
+                                                @subCategory.Name
+                                               
+                                            </a>
+                                        </h3>
+                                        @if (subCategory.SubCategories.Any())
+                                        {
+
+                                            <p>
+                                                @foreach (var item in subCategory.SubCategories)
+                                                {
+                                                    <a href="@Url.RouteUrl("Category", new {SeName = item.SeName})">
+                                                        @item.Name
+                                                        @if (item.NumberOfProducts.HasValue)
+                                                        {
+                                                            <text> </text>@T("Categories.TotalProducts", item.NumberOfProducts.Value)
+                                                        }
+
+                                                    </a>
+
+
+                                                }
+                                            </p>
+
+                                        }
+                                    </div>
+                                </div>
+                            }
+
+                        }
+
+
+                    }
+                </div>
+                <div class="col-md-5 col-sm-5 col-xs-12">
+                    <div class="mega-new-arrival">
+                        <div class="wrap-item">
+
+                            @if (subCategories.Count > 0)
+                            {
+                                foreach (var category in subCategories)
+                                {
+                                    if (category.ShowCategoryPictureMenu)
+                                    {
+                                        <div class="item">
+                                            <div class="item-product">
+                                                <div class="product-thumb">
+                                                    <a href="#">
+                                                        <img src="@category.PictureModel.ImageUrl" alt="" class="first-thumb">
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+
+                                }
+
+                            }
+
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </li>
+
+
+
+}
+else
+{
+    <li>
+
+        <a href="@Url.RouteUrl("Category", new {SeName = Model.Category.SeName})">
+            <span>@Model.Category.Name</span>
+           
+        </a>
+
+
+    </li>
+
+
+
+}
+
+
