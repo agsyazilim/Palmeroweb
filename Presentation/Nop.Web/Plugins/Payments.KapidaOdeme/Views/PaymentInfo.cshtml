@@ -1,0 +1,58 @@
+﻿@{
+    Layout = "";
+}
+@model Nop.Plugin.Payments.KapidaOdeme.Models.PaymentInfoModel
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td style="text-align: center">
+            @Html.Raw(Model.DescriptionText)
+        </td>
+    </tr>
+    <tr>
+        @*<td style="text-align: center">
+            <p>
+                <div class="inputs">
+                    <div class="gender">
+                        <span class="male">
+                            <input type="radio" asp-for="Bank" value="B" checked="@(Model.Bank == "B")" id="bank_odeme" />
+                            <label class="forcheckbox" for="bank_odeme">@T("Plugins.Payment.KapidaOdeme.Field.Bank")</label>
+                        </span>
+                        <span class="female">
+                            <input type="radio" asp-for="Bank" value="K" checked="@(Model.Bank == "K")" id="kapida_odeme" />
+                            <label class="forcheckbox" for="kapida_odeme">@T("Plugins.Payment.KapidaOdeme.Field.Door")</label>
+                        </span>
+                    </div>
+                </div>
+            </p>
+
+
+        </td>*@
+    </tr>
+    <tr>
+        <td style="text-align: center">
+            <div id="bankinformation" style="display: none">
+
+                @*@Html.Raw(Model.BankOfNumber)<br />
+                @Html.Raw(Model.BankOfNumber1)<br />
+                @Html.Raw(Model.BankOfNumber2)*@
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+@*<script asp-location="Footer">
+
+    $('input[type=radio]').change(function () {
+
+        var deger = $(this).val();
+        if (deger == "B") {
+            $('#bankinformation').show();
+        } else {
+            $('#bankinformation').hide();
+        }
+
+    });
+
+
+</script>*@

@@ -40,7 +40,7 @@ namespace Nop.Plugin.Widgets.NivoSlider
         /// <returns>Widget zones</returns>
         public IList<string> GetWidgetZones()
         {
-            return new List<string> { PublicWidgetZones.HomePageTop };
+            return new List<string> { PublicWidgetZones.CategoryPageSlider };
         }
 
         /// <summary>
@@ -67,15 +67,15 @@ namespace Nop.Plugin.Widgets.NivoSlider
         public override void Install()
         {
             //pictures
-            var sampleImagesPath = _fileProvider.MapPath("~/Plugins/Widgets.NivoSlider/Content/nivoslider/sample-images/");
+            var sampleImagesPath = _fileProvider.MapPath("~/Plugins/Widgets.NivoSlider/Content/images/");
 
             //settings
             var settings = new NivoSliderSettings
             {
-                Picture1Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(sampleImagesPath + "banner1.jpg"), MimeTypes.ImagePJpeg, "banner_1").Id,
+                Picture1Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(sampleImagesPath + "bn2.jpg"), MimeTypes.ImagePJpeg, "banner_1").Id,
                 Text1 = "",
                 Link1 = _webHelper.GetStoreLocation(false),
-                Picture2Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(sampleImagesPath + "banner2.jpg"), MimeTypes.ImagePJpeg, "banner_2").Id,
+                Picture2Id = _pictureService.InsertPicture(_fileProvider.ReadAllBytes(sampleImagesPath + "bn3.jpg"), MimeTypes.ImagePJpeg, "banner_2").Id,
                 Text2 = "",
                 Link2 = _webHelper.GetStoreLocation(false)
                 //Picture3Id = _pictureService.InsertPicture(File.ReadAllBytes(sampleImagesPath + "banner3.jpg"), MimeTypes.ImagePJpeg, "banner_3").Id,

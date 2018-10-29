@@ -1,0 +1,237 @@
+﻿@using Nop.Core.Domain.Common
+@model Nop.Plugin.Feed.GoogleShopping.Models.FeedGoogleShoppingModel
+@inject AdminAreaSettings adminAreaSettings
+@{
+    var defaultGridPageSize = adminAreaSettings.DefaultGridPageSize;
+    var gridPageSizes = adminAreaSettings.GridPageSizes;
+}
+
+
+    <div class="content">
+        <div class="form-horizontal">
+            <div class="panel-group">
+                <div class="panel panel-default panel-search">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div class="form-group" @(Model.AvailableVendors.SelectionIsNotPossible() ? Html.Raw("style='display: none;'") : null)>
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="SearchVendorId" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-select asp-for="SearchVendorId" asp-items="Model.AvailableVendors" />
+                                    </div>
+                                </div>
+                            </div>
+                               <div class="col-md-5">
+                               <div class="form-group">
+                                    <div class="col-md-4">
+                                        <nop-label asp-for="SearchProductName" />
+                                    </div>
+                                    <div class="col-md-8">
+                                        <nop-editor asp-for="SearchProductName" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7 col-md-offset-5">
+                                <button type="button" id="search-products" class="btn btn-primary btn-search">
+                                    <i class="fa fa-search"></i>
+                                    @T("Admin.Common.Search")
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-group">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div id="products-grid-cimri"></div>
+                            <script>
+                                $(document).ready(function() {
+                                    $("#products-grid-cimri").kendoGrid({
+                                        dataSource: {
+                                            type: "json",
+                                            transport: {
+                                                read: {
+                                                    url: "@Html.Raw(Url.Action("GoogleProductListe", "FeedGoogleShopping"))",
+                                                    type: "POST",
+                                                    dataType: "json",
+                                                    data: additionalData
+                                                },
+                                                update: {
+                                                    url: "@Html.Raw(Url.Action("GoogleProductUpdateBool", "FeedGoogleShopping"))",
+                                                    type: "POST",
+                                                    dataType: "json",
+                                                    data: additionalData
+                                                },
+                                                parameterMap: function(data, operation) {
+                                                    if (operation != "read") {
+                                                        var result = {};
+
+                                                        for (var i = 0; i < data.models.length; i++) {
+                                                            var entity = data.models[i];
+
+                                                            for (var member in entity) {
+                                                                result["products[" + i + "]." + member] = entity[member];
+                                                            }
+                                                        }
+
+                                                        addAntiForgeryToken(result);
+                                                        return result;
+                                                    } else {
+                                                        addAntiForgeryToken(data);
+                                                        return data;
+                                                    }
+                                                }
+                                            },
+                                            schema: {
+                                                data: "Data",
+                                                total: "Total",
+                                                errors: "Errors",
+                                                model: {
+                                                    id: "Id",
+                                                    fields: {
+                                                        ProductId: { editable: false, type: "number" },
+                                                        ProductName: { editable: false, type: "string" },
+                                                        VendorName: { editable: false, type: "string" },
+                                                        Price: {editable:false,type:"number"},
+                                                        Cimri: { editable: true, type: "boolean" },
+                                                        GoogleShop: { editable: true, type: "boolean" },
+                                                        Id: { editable: false, type: "number" }
+                                                    }
+                                                }
+                                            },
+                                            requestEnd: function(e) {
+                                                if (e.type == "update") {
+                                                    this.read();
+                                                }
+                                            },
+                                            error: function(e) {
+                                                display_kendoui_grid_error(e);
+                                                // Cancel the changes
+                                                this.cancelChanges();
+                                            },
+                                            batch: true,
+                                            pageSize: @(defaultGridPageSize),
+                                            serverPaging: true,
+                                            serverFiltering: true,
+                                            serverSorting: true
+                                        },
+                                        pageable: {
+                                            refresh: true,
+                                            pageSizes: [@(gridPageSizes)],
+                                            @await Html.PartialAsync("~/Areas/Admin/Views/Shared/_GridPagerMessages.cshtml")
+                                        },
+                                        toolbar: ["save", "cancel"],
+                                        editable: {
+                                            confirmation: "@T("Admin.Common.DeleteConfirmation")",
+                                            mode: "incell"
+
+                                        },
+                                        scrollable: true,
+                                        columns:
+                                        [{
+                                                field: "ProductName",
+                                                title: "@T("Plugins.Feed.GoogleShopping.Products.ProductName")",
+                                                width: 300,
+                                                filterable: {
+                                                    cell: {
+                                                        showOperators: false
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                field: "VendorName",
+                                                title: "Satıcı",
+                                                witdh: 300,
+                                                filterable: {
+                                                    cell: {
+                                                        operator: "contains",
+                                                        suggestionOperator: "contains"
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                field: "Price",
+                                                title: "Fiyat",
+                                                width: 300,
+                                                filterable: {
+                                                    cell: {
+                                                        showOperators: false
+                                                    }
+                                                }
+
+
+                                            },
+                                            {
+                                                field: "Cimri",
+                                                title:"@T("Cimri")",
+                                                width: 300,
+                                                filterable: {
+                                                    cell: {
+                                                        showOperators: false
+                                                    }
+                                                }
+
+                                            },
+                                            {
+                                                field: "GoogleShop",
+                                                title:"@T("GoogleShop")",
+                                                width: 300,
+                                                filterable: {
+                                                    cell: {
+                                                        showOperators: false
+                                                    }
+                                                }
+
+                                            }]
+                                    });
+                                });
+                            </script>
+                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+     <script type="text/javascript">
+        var selectedIds = [];
+
+        $(document).ready(function () {
+            //search button
+            $('#search-products').click(function () {
+                //search
+                var grid = $('#products-grid-cimri').data('kendoGrid');
+                grid.dataSource.page(1); //new search. Set page size to 1
+                //grid.dataSource.read(); we already loaded the grid above using "page" function
+                //clear selected checkboxes
+              selectedIds = [];
+                return false;
+            });
+            $("#@Html.IdFor(model => model.SearchProductName)").keydown(function (event) {
+                if (event.keyCode === 13) {
+                    $("#search-products").click();
+                    return false;
+                }
+            });
+        });
+         
+        function additionalData() {
+            var data = {
+                SearchVendorId: $('#SearchVendorId').val(),
+                SearchProductName: $('#@Html.IdFor(model => model.SearchProductName)').val()
+            };
+            addAntiForgeryToken(data);
+            return data;
+        }
+
+        
+
+        
+    </script>
+
+

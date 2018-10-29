@@ -22,7 +22,7 @@
             $(document).ready(function() {
                 var showLinkToResultSearch;
                 var searchText;
-                $('#small-searchterms').autocomplete({
+                jquery('#small-searchterms').autocomplete({
                         delay: 500,
                         minLength: @(Model.SearchTermMinimumLength.ToString()),
                         source: '@(Url.RouteUrl("ProductSearchAutoComplete"))',

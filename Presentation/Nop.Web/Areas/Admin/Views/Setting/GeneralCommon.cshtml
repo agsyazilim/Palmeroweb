@@ -60,7 +60,7 @@
                         @T("Admin.Configuration.Settings.GeneralCommon.BlockTitle.Common")
                     </div>
                     <div class="panel-body">
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="StoreInformationSettings.DefaultStoreTheme_OverrideForStore" asp-parent-container="theme-selection-block" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
                                 <nop-label asp-for="StoreInformationSettings.DefaultStoreTheme" />
@@ -93,7 +93,7 @@
                                 <nop-editor asp-for="StoreInformationSettings.AllowCustomerToSelectTheme" />
                                 <span asp-validation-for="StoreInformationSettings.AllowCustomerToSelectTheme"></span>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="form-group">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="StoreInformationSettings.LogoPictureId_OverrideForStore" asp-parent-container="logo-block" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
@@ -271,7 +271,7 @@
                                 <span asp-validation-for="DisplayDefaultFooterItemSettings.DisplayProductSearchFooterItem"></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="DisplayDefaultFooterItemSettings.DisplayNewsFooterItem_OverrideForStore" asp-input="DisplayDefaultFooterItemSettings.DisplayNewsFooterItem" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
                                 <nop-label asp-for="DisplayDefaultFooterItemSettings.DisplayNewsFooterItem" />
@@ -300,7 +300,7 @@
                                 <nop-editor asp-for="DisplayDefaultFooterItemSettings.DisplayForumsFooterItem" />
                                 <span asp-validation-for="DisplayDefaultFooterItemSettings.DisplayForumsFooterItem"></span>
                             </div>
-                        </div>
+                        </div>*@
                         <div class="form-group">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="DisplayDefaultFooterItemSettings.DisplayRecentlyViewedProductsFooterItem_OverrideForStore" asp-input="DisplayDefaultFooterItemSettings.DisplayRecentlyViewedProductsFooterItem" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
@@ -381,7 +381,7 @@
                                 <span asp-validation-for="DisplayDefaultFooterItemSettings.DisplayWishlistFooterItem"></span>
                             </div>
                         </div>
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="col-md-3">
                                 <nop-override-store-checkbox asp-for="DisplayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem_OverrideForStore" asp-input="DisplayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem" asp-store-scope="@Model.ActiveStoreScopeConfiguration" />
                                 <nop-label asp-for="DisplayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem" />
@@ -390,7 +390,7 @@
                                 <nop-editor asp-for="DisplayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem" />
                                 <span asp-validation-for="DisplayDefaultFooterItemSettings.DisplayApplyVendorAccountFooterItem"></span>
                             </div>
-                        </div>
+                        </div>*@
                     </div>
                 </div>
             

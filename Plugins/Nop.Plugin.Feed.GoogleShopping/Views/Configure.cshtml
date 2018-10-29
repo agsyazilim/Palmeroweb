@@ -1,0 +1,21 @@
+﻿@using Nop.Plugin.Feed.GoogleShopping.Models;
+@model FeedGoogleShoppingModel
+@{
+    Layout = "_ConfigurePlugin";
+
+    Html.AddCssFileParts("~/Plugins/Feed.GoogleShopping/Content/styles.css");
+}
+
+<form asp-controller="FeedGoogleShopping" asp-action="Configure" method="post">
+    <nop-tabs id="googlebase-configure">
+        <nop-tab asp-name="tab-general" asp-title="@T("Plugins.Feed.GoogleShopping.General")" asp-default="true">
+            @await Html.PartialAsync("~/Plugins/Feed.GoogleShopping/Views/_Configure.General.cshtml", Model)
+        </nop-tab>
+        <nop-tab asp-name="tab-override" asp-title="@T("Plugins.Feed.GoogleShopping.Override")">
+            @await Html.PartialAsync("~/Plugins/Feed.GoogleShopping/Views/_Configure.Override.cshtml", Model)
+        </nop-tab>
+        <nop-tab asp-name="tab-edit" asp-title="@T("Plugins.Feed.GoogleShopping.Edit")">
+            @await Html.PartialAsync("~/Plugins/Feed.GoogleShopping/Views/_Configure.Edit.cshtml",Model)
+        </nop-tab>
+</nop-tabs>
+</form>

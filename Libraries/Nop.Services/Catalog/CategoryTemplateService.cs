@@ -53,7 +53,7 @@ namespace Nop.Services.Catalog
         /// <returns>Category templates</returns>
         public virtual IList<CategoryTemplate> GetAllCategoryTemplates()
         {
-            var query = from pt in _categoryTemplateRepository.Table
+           var query = from pt in _categoryTemplateRepository.Table
                         orderby pt.DisplayOrder, pt.Id
                         select pt;
 

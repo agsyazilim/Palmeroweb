@@ -14,7 +14,7 @@
                     </div>
                     <div class="supperdeal-tab">
                         <ul>
-                            @foreach (var item in Model)
+                            @foreach (var item in Model.Where(x=>x.ShowTabs))
                             {
                                 <li @if (index == 0) { <text> class="active" </text> }>
                                     <a href="#@item.SeName" data-toggle="tab">

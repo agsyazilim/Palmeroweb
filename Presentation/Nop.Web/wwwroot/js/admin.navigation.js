@@ -55,7 +55,7 @@ Admin.Navigation = (function () {
         map = buildMap();
         $.ajax({
             cache: false,
-            url: rootAppPath+'admin/plugin/SearchList',
+            url: '/admin/plugin/SearchList',
             type: 'get',
             async:false,
             success: function (res) { result = res;}

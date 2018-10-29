@@ -769,7 +769,7 @@ namespace Nop.Web.Areas.Admin.Controllers
         {
             if (!_permissionService.Authorize(StandardPermissionProvider.ManageProducts))
                 return AccessDeniedKendoGridJson();
-
+            
             //prepare model
             var model = _productModelFactory.PrepareProductListModel(searchModel);
 

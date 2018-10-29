@@ -1,0 +1,74 @@
+﻿@model Nop.Plugin.Widgets.ABanner.Models.PublicInfoModel
+@{
+    Layout = "";
+
+
+}
+
+<div class="list-adv-center">
+    <div class="row">
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="item-adv-simple adv-home6 item-leading">
+                @{
+                    var dataSlide1 = new ViewDataDictionary(ViewData)
+                                            {
+                                                {"pictureUrl", Model.Picture1Url},
+                                                {"text", Model.Text1},
+                                                {"link", Model.Link1},
+                                                {"alttext", Model.AltText1}
+                                            };
+
+                    @await Html.PartialAsync("~/Plugins/Widgets.ABanner/Views/_PublicInfo.SliderLine.cshtml", dataSlide1)
+
+                }
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            @{
+                var dataSlide2 = new ViewDataDictionary(ViewData)
+                                {
+                                    {"pictureUrl", Model.Picture2Url},
+                                    {"text", Model.Text2},
+                                    {"link", Model.Link2},
+                                    {"alttext", Model.AltText2}
+                                };
+                <div class="item-adv-simple adv-home6" style="margin-bottom:20px;">
+                    @await Html.PartialAsync("~/Plugins/Widgets.ABanner/Views/_PublicInfo.SliderLine.cshtml", dataSlide2)
+                </div>
+            }
+            <div class="row">
+                @{
+                    var dataSlide3 = new ViewDataDictionary(ViewData)
+                                            {
+                                                {"pictureUrl", Model.Picture3Url},
+                                                {"text", Model.Text3},
+                                                {"link", Model.Link3},
+                                                {"alttext", Model.AltText3},
+                                                {"dataTransition", "slideInLeft"}
+                                            };
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="item-adv-simple adv-home6">
+                            @await Html.PartialAsync("~/Plugins/Widgets.ABanner/Views/_PublicInfo.SliderLine.cshtml", dataSlide3)
+                        </div>
+                    </div>
+                }
+
+                @{
+                    var dataSlide4 = new ViewDataDictionary(ViewData)
+                                            {
+                                                {"pictureUrl", Model.Picture4Url},
+                                                {"text", Model.Text4},
+                                                {"link", Model.Link4},
+                                                {"alttext", Model.AltText4}
+                                            };
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="item-adv-simple adv-home6">
+                            @await Html.PartialAsync("~/Plugins/Widgets.ABanner/Views/_PublicInfo.SliderLine.cshtml", dataSlide4)
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>

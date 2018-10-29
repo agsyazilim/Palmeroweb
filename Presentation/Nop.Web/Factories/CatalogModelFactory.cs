@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Core;
 using Nop.Core.Caching;
@@ -25,6 +22,9 @@ using Nop.Web.Framework.Events;
 using Nop.Web.Infrastructure.Cache;
 using Nop.Web.Models.Catalog;
 using Nop.Web.Models.Media;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Nop.Web.Factories
 {
@@ -136,10 +136,14 @@ namespace Nop.Web.Factories
         public virtual void PrepareSortingOptions(CatalogPagingFilteringModel pagingFilteringModel, CatalogPagingFilteringModel command)
         {
             if (pagingFilteringModel == null)
+            {
                 throw new ArgumentNullException(nameof(pagingFilteringModel));
+            }
 
             if (command == null)
+            {
                 throw new ArgumentNullException(nameof(command));
+            }
 
             //set the order by position by default
             pagingFilteringModel.OrderBy = command.OrderBy;
@@ -147,13 +151,17 @@ namespace Nop.Web.Factories
 
             //ensure that product sorting is enabled
             if (!_catalogSettings.AllowProductSorting)
+            {
                 return;
+            }
 
             //get active sorting options
             var activeSortingOptionsIds = Enum.GetValues(typeof(ProductSortingEnum)).Cast<int>()
                 .Except(_catalogSettings.ProductSortingEnumDisabled).ToList();
             if (!activeSortingOptionsIds.Any())
+            {
                 return;
+            }
 
             //order sorting options
             var orderedActiveSortingOptions = activeSortingOptionsIds
@@ -184,10 +192,14 @@ namespace Nop.Web.Factories
         public virtual void PrepareViewModes(CatalogPagingFilteringModel pagingFilteringModel, CatalogPagingFilteringModel command)
         {
             if (pagingFilteringModel == null)
+            {
                 throw new ArgumentNullException(nameof(pagingFilteringModel));
+            }
 
             if (command == null)
+            {
                 throw new ArgumentNullException(nameof(command));
+            }
 
             pagingFilteringModel.AllowProductViewModeChanging = _catalogSettings.AllowProductViewModeChanging;
 
@@ -227,10 +239,14 @@ namespace Nop.Web.Factories
             bool allowCustomersToSelectPageSize, string pageSizeOptions, int fixedPageSize)
         {
             if (pagingFilteringModel == null)
+            {
                 throw new ArgumentNullException(nameof(pagingFilteringModel));
+            }
 
             if (command == null)
+            {
                 throw new ArgumentNullException(nameof(command));
+            }
 
             if (command.PageNumber <= 0)
             {
@@ -315,7 +331,9 @@ namespace Nop.Web.Factories
         public virtual CategoryModel PrepareCategoryModel(Category category, CatalogPagingFilteringModel command)
         {
             if (category == null)
+            {
                 throw new ArgumentNullException(nameof(category));
+            }
 
             var model = new CategoryModel
             {
@@ -346,10 +364,14 @@ namespace Nop.Web.Factories
             if (selectedPriceRange != null)
             {
                 if (selectedPriceRange.From.HasValue)
+                {
                     minPriceConverted = _currencyService.ConvertToPrimaryStoreCurrency(selectedPriceRange.From.Value, _workContext.WorkingCurrency);
+                }
 
                 if (selectedPriceRange.To.HasValue)
+                {
                     maxPriceConverted = _currencyService.ConvertToPrimaryStoreCurrency(selectedPriceRange.To.Value, _workContext.WorkingCurrency);
+                }
             }
 
             //category breadcrumb
@@ -494,9 +516,15 @@ namespace Nop.Web.Factories
             {
                 var template = _categoryTemplateService.GetCategoryTemplateById(templateId);
                 if (template == null)
+                {
                     template = _categoryTemplateService.GetAllCategoryTemplates().FirstOrDefault();
+                }
+
                 if (template == null)
+                {
                     throw new Exception("No default template could be loaded");
+                }
+
                 return template.ViewPath;
             });
 
@@ -523,7 +551,9 @@ namespace Nop.Web.Factories
                 //product details page
                 var productCategories = _categoryService.GetProductCategoriesByProductId(currentProductId);
                 if (productCategories.Any())
+                {
                     activeCategoryId = productCategories[0].CategoryId;
+                }
             }
 
             var cachedCategoriesModel = PrepareCategorySimpleModels();
@@ -607,7 +637,15 @@ namespace Nop.Web.Factories
                         MetaDescription = _localizationService.GetLocalized(category, x => x.MetaDescription),
                         MetaTitle = _localizationService.GetLocalized(category, x => x.MetaTitle),
                         SeName = _urlRecordService.GetSeName(category),
+                        ShowTabs = category.ShowTabs
+                        
+
                     };
+                    var categoryIds = new List<int>();
+                    categoryIds.Add(category.Id);
+                    var products = _productService.SearchProducts(categoryIds: categoryIds, storeId: _storeContext.CurrentStore.Id,
+               visibleIndividuallyOnly: true);
+                    catModel.Products = _productModelFactory.PrepareProductOverviewModels(products).ToList();
 
                     //prepare picture model
                     var categoryPictureCacheKey = string.Format(ModelCacheEventConsumer.CATEGORY_PICTURE_MODEL_KEY, category.Id, pictureSize, true, _workContext.WorkingLanguage.Id, _webHelper.IsCurrentConnectionSecured(), _storeContext.CurrentStore.Id);
@@ -663,14 +701,28 @@ namespace Nop.Web.Factories
             //so we load all categories at once (we know they are cached)
             var allCategories = _categoryService.GetAllCategories(storeId: _storeContext.CurrentStore.Id);
             var categories = allCategories.Where(c => c.ParentCategoryId == rootCategoryId).ToList();
+
             foreach (var category in categories)
             {
+                var picture = _pictureService.GetPictureById(category.PictureId);
+                var pictureModel = new PictureModel
+                {
+                    FullSizeImageUrl = _pictureService.GetPictureUrl(picture),
+                    ImageUrl = _pictureService.GetPictureUrl(picture, category.PictureSize),
+                    Title = string.Format(_localizationService.GetResource("Media.Category.ImageLinkTitleFormat"), category.Name),
+                    AlternateText = string.Format(_localizationService.GetResource("Media.Category.ImageAlternateTextFormat"), category.Name)
+                };
+
                 var categoryModel = new CategorySimpleModel
                 {
                     Id = category.Id,
                     Name = _localizationService.GetLocalized(category, x => x.Name),
                     SeName = _urlRecordService.GetSeName(category),
-                    IncludeInTopMenu = category.IncludeInTopMenu
+                    IncludeInTopMenu = category.IncludeInTopMenu,
+                    PictureModel = pictureModel,
+                    MegaMenu = category.MegaMenu,
+                    ShowCategoryPictureMenu = category.ShowCategoryPictureMenu
+                    
                 };
 
                 //number of products in each category
@@ -686,7 +738,10 @@ namespace Nop.Web.Factories
                         categoryIds.Add(category.Id);
                         //include subcategories
                         if (_catalogSettings.ShowCategoryProductNumberIncludingSubcategories)
+                        {
                             categoryIds.AddRange(_categoryService.GetChildCategoryIds(category.Id, _storeContext.CurrentStore.Id));
+                        }
+
                         return _productService.GetNumberOfProductsInCategory(categoryIds, _storeContext.CurrentStore.Id);
                     });
                 }
@@ -715,7 +770,9 @@ namespace Nop.Web.Factories
         public virtual ManufacturerModel PrepareManufacturerModel(Manufacturer manufacturer, CatalogPagingFilteringModel command)
         {
             if (manufacturer == null)
+            {
                 throw new ArgumentNullException(nameof(manufacturer));
+            }
 
             var model = new ManufacturerModel
             {
@@ -746,10 +803,14 @@ namespace Nop.Web.Factories
             if (selectedPriceRange != null)
             {
                 if (selectedPriceRange.From.HasValue)
+                {
                     minPriceConverted = _currencyService.ConvertToPrimaryStoreCurrency(selectedPriceRange.From.Value, _workContext.WorkingCurrency);
+                }
 
                 if (selectedPriceRange.To.HasValue)
+                {
                     maxPriceConverted = _currencyService.ConvertToPrimaryStoreCurrency(selectedPriceRange.To.Value, _workContext.WorkingCurrency);
+                }
             }
 
             //featured products
@@ -819,9 +880,15 @@ namespace Nop.Web.Factories
             {
                 var template = _manufacturerTemplateService.GetManufacturerTemplateById(templateId);
                 if (template == null)
+                {
                     template = _manufacturerTemplateService.GetAllManufacturerTemplates().FirstOrDefault();
+                }
+
                 if (template == null)
+                {
                     throw new Exception("No default template could be loaded");
+                }
+
                 return template.ViewPath;
             });
 
@@ -923,7 +990,9 @@ namespace Nop.Web.Factories
         public virtual VendorModel PrepareVendorModel(Vendor vendor, CatalogPagingFilteringModel command)
         {
             if (vendor == null)
+            {
                 throw new ArgumentNullException(nameof(vendor));
+            }
 
             var model = new VendorModel
             {
@@ -1069,6 +1138,7 @@ namespace Nop.Web.Factories
                 model.TotalTags = allTags.Count;
 
                 foreach (var tag in tags)
+                {
                     model.Tags.Add(new ProductTagModel
                     {
                         Id = tag.Id,
@@ -1076,6 +1146,8 @@ namespace Nop.Web.Factories
                         SeName = _urlRecordService.GetSeName(tag),
                         ProductCount = _productTagService.GetProductCount(tag.Id, _storeContext.CurrentStore.Id)
                     });
+                }
+
                 return model;
             });
 
@@ -1091,7 +1163,9 @@ namespace Nop.Web.Factories
         public virtual ProductsByTagModel PrepareProductsByTagModel(ProductTag productTag, CatalogPagingFilteringModel command)
         {
             if (productTag == null)
+            {
                 throw new ArgumentNullException(nameof(productTag));
+            }
 
             var model = new ProductsByTagModel
             {
@@ -1167,11 +1241,16 @@ namespace Nop.Web.Factories
         public virtual SearchModel PrepareSearchModel(SearchModel model, CatalogPagingFilteringModel command)
         {
             if (model == null)
+            {
                 throw new ArgumentNullException(nameof(model));
+            }
 
             var searchTerms = model.q;
             if (searchTerms == null)
+            {
                 searchTerms = "";
+            }
+
             searchTerms = searchTerms.Trim();
 
             //sorting
@@ -1202,7 +1281,9 @@ namespace Nop.Web.Factories
                     {
                         categoryBreadcrumb += _localizationService.GetLocalized(breadcrumb[i], x => x.Name);
                         if (i != breadcrumb.Count - 1)
+                        {
                             categoryBreadcrumb += " >> ";
+                        }
                     }
                     categoriesModel.Add(new SearchModel.CategoryModel
                     {
@@ -1241,12 +1322,14 @@ namespace Nop.Web.Factories
                     Text = _localizationService.GetResource("Common.All")
                 });
                 foreach (var m in manufacturers)
+                {
                     model.AvailableManufacturers.Add(new SelectListItem
                     {
                         Value = m.Id.ToString(),
                         Text = _localizationService.GetLocalized(m, x => x.Name),
                         Selected = model.mid == m.Id
                     });
+                }
             }
 
             model.asv = _vendorSettings.AllowSearchByVendor;
@@ -1261,12 +1344,14 @@ namespace Nop.Web.Factories
                         Text = _localizationService.GetResource("Common.All")
                     });
                     foreach (var vendor in vendors)
+                    {
                         model.AvailableVendors.Add(new SelectListItem
                         {
                             Value = vendor.Id.ToString(),
                             Text = _localizationService.GetLocalized(vendor, x => x.Name),
                             Selected = model.vid == vendor.Id
                         });
+                    }
                 }
             }
 
@@ -1308,17 +1393,23 @@ namespace Nop.Web.Factories
                         if (!string.IsNullOrEmpty(model.pf))
                         {
                             if (decimal.TryParse(model.pf, out decimal minPrice))
+                            {
                                 minPriceConverted = _currencyService.ConvertToPrimaryStoreCurrency(minPrice, _workContext.WorkingCurrency);
+                            }
                         }
                         //max price
                         if (!string.IsNullOrEmpty(model.pt))
                         {
                             if (decimal.TryParse(model.pt, out decimal maxPrice))
+                            {
                                 maxPriceConverted = _currencyService.ConvertToPrimaryStoreCurrency(maxPrice, _workContext.WorkingCurrency);
+                            }
                         }
 
                         if (model.asv)
+                        {
                             vendorId = model.vid;
+                        }
 
                         searchInDescriptions = model.sid;
                     }

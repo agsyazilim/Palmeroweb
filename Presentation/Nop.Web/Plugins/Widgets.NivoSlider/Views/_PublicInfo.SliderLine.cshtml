@@ -9,15 +9,21 @@
 
     if (!string.IsNullOrEmpty(pictureUrl))
     {
-        if (!string.IsNullOrEmpty(link))
-        {
-            <a href="@link" aria-label="@alttext">
-                <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" alt="@alttext" title="@text" />
-            </a>
-        }
-        else
-        {
-            <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" alt="@alttext" title="@text" />
-        }
+        <div class="item">
+            <div class="item-shop-slider">
+                <div class="shop-slider-thumb">
+                    <img src="@pictureUrl" data-thumb="@pictureUrl" data-transition="@dataTransition" alt="@alttext" title="@text" />
+                </div>
+                <div class="shop-slider-info">
+                    <h3>@text</h3>
+                    <h2>@alttext</h2>
+                    @if (!string.IsNullOrEmpty(link))
+                    {
+                        <a href="@link" class="shop-now">@T("slider.buyNow")</a>
+                    }
+                </div>
+            </div>
+        </div>
+
     }
 }

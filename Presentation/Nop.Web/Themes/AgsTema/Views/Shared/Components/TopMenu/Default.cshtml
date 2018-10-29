@@ -1,8 +1,8 @@
 ﻿@model TopMenuModel
-<div class="header-nav header-nav10">
+<div class="header-nav header-nav10 bottom">
     <div class="container">
-        <nav class="main-nav main-nav10">
-            <ul>
+        <nav class="main-nav main-nav10 bottom">
+            <ul class="bottom">
                 @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.HeaderMenuBefore })
                 @if (Model.DisplayHomePageMenuItem)
                 {

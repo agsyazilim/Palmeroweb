@@ -81,6 +81,28 @@ namespace Nop.Core.Domain.Catalog
         /// </summary>
         public bool ShowOnHomePage { get; set; }
 
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to show the category picture main menü
+        /// </summary>
+        public bool ShowCategoryPictureMenu { get; set; }
+        /// <summary>
+        /// menü picture size
+        /// </summary>
+
+        public int PictureSize { get; set; }
+        /// <summary>
+        /// megamenu active
+        /// </summary>
+
+        public bool MegaMenu { get; set; }
+        /// <summary>
+        /// show tabs
+        /// </summary>
+
+        public bool ShowTabs { get; set; }
+
+
         /// <summary>
         /// Gets or sets a value indicating whether to include this category in the top menu
         /// </summary>

@@ -1,0 +1,122 @@
+[
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/theme.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/theme.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/responsive.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/responsive.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/bootstrap.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/bootstrap.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/bootstrap-theme.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/bootstrap-theme.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/font-linearicons.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/font-linearicons.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/jquery.bxslider.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/jquery.bxslider.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/jquery.mCustomScrollbar.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/jquery.mCustomScrollbar.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/owl.carousel.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/owl.carousel.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/owl.theme.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/owl.theme.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/owl.transitions.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/owl.transitions.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/PieChart.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/PieChart.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/jquery-ui.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/jquery-ui.css"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/slideshow/settings.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/slideshow/settings.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/theme.min.js",
+    "inputFiles": [
+      "wwwroot/js/theme.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/owl.carousel.min.js",
+    "inputFiles": [
+      "wwwroot/js/owl.carousel.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/lightslider.min.js",
+    "inputFiles": [
+      "wwwroot/js/lightslider.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery-ui.min.js",
+    "inputFiles": [
+      "wwwroot/js/jquery-ui.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery-1.12.0.min.min.js",
+    "inputFiles": [
+      "wwwroot/js/jquery-1.12.0.min.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/jquery.cookie.min.js",
+    "inputFiles": [
+      "wwwroot/js/jquery.cookie.js"
+    ]
+  },
+  {
+    "outputFileName": "Themes/AgsTema/Content/css/font.min.css",
+    "inputFiles": [
+      "Themes/AgsTema/Content/css/font.css"
+    ]
+  }
+]

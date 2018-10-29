@@ -35,22 +35,24 @@
     } 
 }
 <div class="side-2">
-    @if (IsSectionDefined("left"))
-    {
-        @RenderSection("left")
-    }
-    else
-    {
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnBefore })
         @await Component.InvokeAsync("CategoryNavigation", new { currentCategoryId = currentCategoryId, currentProductId = currentProductId })
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfterCategoryNavigation })
         @await Component.InvokeAsync("ManufacturerNavigation", new { currentManufacturerId = currentManufacturerId })
+        @if (IsSectionDefined("left"))
+        {
+          @RenderSection("left")
+        }
         @await Component.InvokeAsync("VendorNavigation")
         @await Component.InvokeAsync("RecentlyViewedProductsBlock", new { productThumbPictureSize = 64 })
         @await Component.InvokeAsync("PopularProductTags")
         @await Component.InvokeAsync("PollBlock", new { systemKeyword = "LeftColumnPoll" })
         @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.LeftSideColumnAfter })
-    }
+    
+    
+    
+       
+    
 </div>
 <div class="center-2">
     @await Component.InvokeAsync("Widget", new { widgetZone = PublicWidgetZones.MainColumnBefore })

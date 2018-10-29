@@ -1,0 +1,80 @@
+﻿@model Nop.Plugin.Widgets.HeaderContactDetails.Models.PublicInfoModel
+@{
+    Layout = "";
+
+}
+@if (!string.IsNullOrWhiteSpace(Model.Kargo))
+{
+
+    <a href="@Model.KargoUrl" target="_blank">
+        @*<i class="fa fa-envelope" aria-hidden="true"></i>*@
+        <img src="@Model.KargoPictureUrl" alt="@Model.Kargo" />
+        @Model.Kargo
+    </a>
+
+}
+@if (!string.IsNullOrWhiteSpace(Model.PhoneNumberDisplayText))
+{
+
+    <a href="@Model.PhoneNumberUrl" target="_blank">
+        @*<i class="fa fa-phone" aria-hidden="true"></i>*@
+        <img src="@Model.PhonePictureUrl" alt="@Model.PhoneNumberDisplayText" />
+        @Model.PhoneNumberDisplayText
+    </a>
+
+}
+
+@if (!string.IsNullOrWhiteSpace(Model.WhatsAppNumberDisplayText))
+{
+
+    <a href="@Model.WhatsAppNumberUrl" target="_blank">
+        @*<i class="fa fa-whatsapp" aria-hidden="true"></i>*@
+        <img src="@Model.WhatsappPictureUrl" alt="@Model.WhatsAppNumberDisplayText" />
+        @Model.WhatsAppNumberDisplayText
+    </a>
+
+}
+@if (!string.IsNullOrWhiteSpace(Model.Contact))
+{
+
+    <a href="@Model.ContactUrl" target="_blank">
+        @*<i class="fa fa-envelope" aria-hidden="true"></i>*@
+        <img src="@Model.ContactPictureUrl" alt="@Model.Contact" />
+        @Model.Contact
+    </a>
+
+}
+@if (!string.IsNullOrWhiteSpace(Model.SiparisHatti))
+{
+
+    <a href="@Model.SiparisHattıUrl" target="_blank">
+        @*<i class="fa fa-envelope" aria-hidden="true"></i>*@
+        <img src="@Model.SiparisHattiPictureUrl" alt="@Model.SiparisHatti" />
+        @Model.SiparisHatti
+    </a>
+
+}
+@if (!string.IsNullOrWhiteSpace(Model.Help))
+{
+
+    <a href="@Model.HelpUrl" target="_blank">
+        @*<i class="fa fa-envelope" aria-hidden="true"></i>*@
+        <img src="@Model.HelpPictureUrl" alt="@Model.Help" />
+        @Model.Help
+    </a>
+
+}
+@if (!string.IsNullOrWhiteSpace(Model.EmailAddressDisplayText))
+{
+
+    <a href="@Model.EmailAddressUrl" target="_blank">
+        @*<i class="fa fa-envelope" aria-hidden="true"></i>*@
+        <img src="@Model.EmailPictureUrl" alt="@Model.EmailAddressDisplayText" />
+        @Model.EmailAddressDisplayText
+    </a>
+
+}
+
+
+
+

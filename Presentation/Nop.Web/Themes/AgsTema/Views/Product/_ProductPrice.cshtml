@@ -37,13 +37,14 @@
 
                         @if (!string.IsNullOrEmpty(Model.Price))
                         {
-                            @Html.Raw(Model.Price).RenderHtmlContent().Replace("₺","TL")
+                            
+                            @Html.Raw(Model.Price).RenderHtmlContent().Replace("₺","TL") 
                         }
                         else
                         {
                             @Html.Raw(Model.Price).RenderHtmlContent().Replace("₺","TL")
                         }
-
+                         
                     </span>
                     @if (!string.IsNullOrWhiteSpace(Model.OldPrice))
                     {
@@ -57,7 +58,7 @@
                     <div class="product-price discounted-price">
                         <label>@T("Products.Price.WithDiscount"):</label>
                         <span itemprop="price" content="@Model.PriceValue.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)" class="price-value-@(Model.ProductId)">
-                            @Html.Raw(Model.PriceWithDiscount)
+                            @Html.Raw(Model.PriceWithDiscount) 
                         </span>
                     </div>
                 }

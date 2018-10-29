@@ -1,0 +1,220 @@
+﻿@model Nop.Plugin.Widgets.HeaderContactDetails.Models.ConfigurationModel
+
+@{
+    Layout = "_ConfigurePlugin";
+}
+
+@await Component.InvokeAsync("StoreScopeConfiguration")
+<form asp-controller="WidgetsHeaderContactDetails" asp-action="Configure" method="post">
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                @T("Plugins.Widgets.HeaderContactDetails.ContactDetails")
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="PhoneNumberUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PhoneNumberUrl" />
+                        <span asp-validation-for="PhoneNumberUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="PhoneNumberDisplayText" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PhoneNumberDisplayText" />
+                        <span asp-validation-for="PhoneNumberDisplayText"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="PhonePictureId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="PhonePictureId" />
+                        <span asp-validation-for="PhonePictureId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+
+                        <nop-label asp-for="WhatsAppNumberUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="WhatsAppNumberUrl" />
+                        <span asp-validation-for="WhatsAppNumberUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+
+                        <nop-label asp-for="WhatsAppNumberDisplayText" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="WhatsAppNumberDisplayText" />
+                        <span asp-validation-for="WhatsAppNumberDisplayText"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+
+                        <nop-label asp-for="WhatsappPictureId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="WhatsappPictureId" />
+                        <span asp-validation-for="WhatsappPictureId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="EmailAddressUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="EmailAddressUrl" />
+                        <span asp-validation-for="EmailAddressUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="EmailAddressDisplayText" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="EmailAddressDisplayText" />
+                        <span asp-validation-for="EmailAddressDisplayText"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="EmailPictureId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="EmailPictureId" />
+                        <span asp-validation-for="EmailPictureId"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="SiparisHatti" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="SiparisHatti" />
+                        <span asp-validation-for="SiparisHatti"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="SiparisHattıUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="SiparisHattıUrl" />
+                        <span asp-validation-for="SiparisHattıUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="SiparisHattiPictureId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="SiparisHattiPictureId" />
+                        <span asp-validation-for="SiparisHattiPictureId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="Help" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Help" />
+                        <span asp-validation-for="Help"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="HelpUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="HelpUrl" />
+                        <span asp-validation-for="HelpUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="HelpPictureId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="HelpPictureId" />
+                        <span asp-validation-for="HelpPictureId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="Kargo" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Kargo" />
+                        <span asp-validation-for="Kargo"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="KargoUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="KargoUrl" />
+                        <span asp-validation-for="KargoUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="KargoPictureId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="KargoPictureId" />
+                        <span asp-validation-for="KargoPictureId"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="Contact" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="Contact" />
+                        <span asp-validation-for="Contact"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="ContactUrl" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ContactUrl" />
+                        <span asp-validation-for="ContactUrl"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <nop-label asp-for="ContactPictureId" />
+                    </div>
+                    <div class="col-md-9">
+                        <nop-editor asp-for="ContactPictureId" />
+                        <span asp-validation-for="ContactPictureId"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-9 col-md-offset-3">
+                        <input type="submit" name="save" class="btn bg-blue" value="@T("Admin.Common.Save")" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

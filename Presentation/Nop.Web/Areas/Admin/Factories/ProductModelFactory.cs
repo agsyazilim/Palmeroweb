@@ -738,14 +738,13 @@ namespace Nop.Web.Areas.Admin.Factories
             //prepare list model
             var model = new ProductListModel
             {
+                
                 Data = products.Select(product =>
                 {
                     //fill in model values from the entity
                     var productModel = product.ToModel<ProductModel>();
-
                     //little performance optimization: ensure that "FullDescription" is not returned
                     productModel.FullDescription = string.Empty;
-
                     //fill in additional values (not existing in the entity)
                     var defaultProductPicture = _pictureService.GetPicturesByProductId(product.Id, 1).FirstOrDefault();
                     productModel.PictureThumbnailUrl = _pictureService.GetPictureUrl(defaultProductPicture, 75);
@@ -2296,14 +2295,13 @@ namespace Nop.Web.Areas.Admin.Factories
                 {
                     //values
                     var attributeValues = _productAttributeService.GetProductAttributeValues(attribute.Id);
-                    var preSelectedValue = _productAttributeParser.ParseValues(model.AttributesXml, attribute.Id);
                     foreach (var attributeValue in attributeValues)
                     {
                         var attributeValueModel = new ProductAttributeCombinationModel.ProductAttributeValueModel
                         {
                             Id = attributeValue.Id,
                             Name = attributeValue.Name,
-                            IsPreSelected = preSelectedValue.Contains(attributeValue.Id.ToString())
+                            IsPreSelected = attributeValue.IsPreSelected
                         };
                         attributeModel.Values.Add(attributeValueModel);
                     }

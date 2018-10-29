@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using FluentValidation.Attributes;
+﻿using FluentValidation.Attributes;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Nop.Web.Areas.Admin.Validators.Catalog;
 using Nop.Web.Framework.Models;
 using Nop.Web.Framework.Mvc.ModelBinding;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Nop.Web.Areas.Admin.Models.Catalog
 {
@@ -86,6 +86,14 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.ShowOnHomePage")]
         public bool ShowOnHomePage { get; set; }
+         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.ShowCategoryPictureMenu")]
+        public bool ShowCategoryPictureMenu { get; set; }
+         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.PictureSize")]
+        public int PictureSize { get; set; }
+         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MegaMenu")]
+        public bool MegaMenu { get; set; }
+         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.ShowTabs")]
+        public bool ShowTabs { get; set; }
 
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.IncludeInTopMenu")]
         public bool IncludeInTopMenu { get; set; }
@@ -98,7 +106,7 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
 
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.DisplayOrder")]
         public int DisplayOrder { get; set; }
-        
+
         public IList<CategoryLocalizedModel> Locales { get; set; }
 
         public string Breadcrumb { get; set; }
@@ -107,7 +115,7 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.AclCustomerRoles")]
         public IList<int> SelectedCustomerRoleIds { get; set; }
         public IList<SelectListItem> AvailableCustomerRoles { get; set; }
-        
+
         //store mapping
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.LimitedToStores")]
         public IList<int> SelectedStoreIds { get; set; }
@@ -133,7 +141,7 @@ namespace Nop.Web.Areas.Admin.Models.Catalog
         public string Name { get; set; }
 
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.Description")]
-        public string Description {get;set;}
+        public string Description { get; set; }
 
         [NopResourceDisplayName("Admin.Catalog.Categories.Fields.MetaKeywords")]
         public string MetaKeywords { get; set; }

@@ -12,5 +12,13 @@
   "Shipping.UPS",
   "Tax.FixedOrByCountryStateZip",
   "Widgets.GoogleAnalytics",
-  "Widgets.NivoSlider"
+  "Widgets.Carousel",
+  "Widgets.Banner",
+  "Widgets.ABanner",
+  "Widgets.NivoSlider",
+  "Widgets.HeaderContactDetails",
+  "Payments.KapidaOdeme",
+  "Ürün Video",
+  "PromotionFeed.Froogle"
+  
 ]

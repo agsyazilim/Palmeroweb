@@ -8,6 +8,7 @@ using Nop.Core;
 using Nop.Core.Caching;
 using Nop.Core.Domain.Catalog;
 using Nop.Core.Domain.Customers;
+using Nop.Core.Domain.Directory;
 using Nop.Core.Domain.Media;
 using Nop.Core.Domain.Orders;
 using Nop.Core.Domain.Security;
@@ -342,6 +343,14 @@ namespace Nop.Web.Factories
 
                     //PAngV baseprice (used in Germany)
                     priceModel.BasePricePAngV = _priceFormatter.FormatBasePrice(product, finalPriceWithDiscount);
+                    if (oldPriceBase > 0)
+                    {
+                        var discount = ((oldPriceBase - priceModel.PriceValue) / oldPriceBase) * 100;
+                        discount = Math.Round(discount, 0, MidpointRounding.AwayFromZero);
+                        priceModel.Discount = discount.ToString();
+                    }
+                    
+                    
                 }
             }
             else
@@ -602,6 +611,7 @@ namespace Nop.Web.Factories
 
                         model.PriceValue = finalPriceWithDiscount;
 
+
                         //property for German market
                         //we display tax/shipping info only with "shipping enabled" for this product
                         //we also ensure this it's not free shipping
@@ -620,6 +630,12 @@ namespace Nop.Web.Factories
                             model.IsRental = true;
                             var priceStr = _priceFormatter.FormatPrice(finalPriceWithDiscount);
                             model.RentalPrice = _priceFormatter.FormatRentalProductPeriod(product, priceStr);
+                        }
+                        if (oldPriceBase > 0)
+                        {
+                            var discount = ((oldPriceBase - model.PriceValue) / oldPriceBase) * 100;
+                            discount = Math.Round(discount, 0, MidpointRounding.AwayFromZero);
+                            model.Discount = discount.ToString();
                         }
                     }
                 }

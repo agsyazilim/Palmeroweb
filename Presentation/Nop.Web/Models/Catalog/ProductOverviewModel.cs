@@ -44,6 +44,10 @@ namespace Nop.Web.Models.Catalog
             public string Price { get; set; }
             public decimal PriceValue { get; set; }
             /// <summary>
+            /// ekleme yapıldı anasayfada gelen istonto hesaplanıyor eskifiyat - yeni fiyat
+            /// </summary>
+            public string Discount { get; set; }
+            /// <summary>
             /// PAngV baseprice (used in Germany)
             /// </summary>
             public string BasePricePAngV { get; set; }

@@ -1,0 +1,15 @@
+﻿{
+  "Group": "Widgets",
+  "FriendlyName": "Carousel Slider",
+  "SystemName": "Widgets.Carousel",
+  "Version": "1.00",
+  "SupportedVersions": [
+    "4.10"
+  ],
+  "Author": "atilla kaya",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Widgets.Carousel.dll",
+  "Description": "This plugin allows you to change the contents of main page slider",
+  "LimitedToStores": [],
+  "LimitedToCustomerRoles": []
+}

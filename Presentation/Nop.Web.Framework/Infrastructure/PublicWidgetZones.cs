@@ -174,5 +174,6 @@
         public static string SitemapBefore => "sitemap_before";
         public static string VendorDetailsBottom => "vendordetails_bottom";
         public static string VendorDetailsTop => "vendordetails_top";
+        public static string CategoryPageSlider => "category_page_slider";
     }
 }

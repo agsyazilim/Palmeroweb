@@ -37,6 +37,9 @@ namespace Nop.Services.Catalog
             ParentCategoryId = c.ParentCategoryId;
             PictureId = c.PictureId;
             PageSize = c.PageSize;
+            PictureSize = c.PictureSize;
+            MegaMenu = c.MegaMenu;
+            ShowCategoryPictureMenu = c.ShowCategoryPictureMenu;
             AllowCustomersToSelectPageSize = c.AllowCustomersToSelectPageSize;
             PageSizeOptions = c.PageSizeOptions;
             PriceRanges = c.PriceRanges;

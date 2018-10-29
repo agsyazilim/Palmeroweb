@@ -2,13 +2,14 @@
 @{
     Layout = "";
 
-    Html.AddScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.NivoSlider/Scripts/jquery.nivo.slider.js");
-    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/nivo-slider.css");
-    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/nivoslider/themes/custom/custom.css");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/Plugins/Widgets.NivoSlider/Scripts/owl.carousel.js");
+    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/css/owl.carousel.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/css/owl.transitions.css");
+    Html.AddCssFileParts("~/Plugins/Widgets.NivoSlider/Content/css/owl.theme.css");
 }
 
-<div class="slider-wrapper theme-custom">
-    <div id="nivo-slider" class="nivoSlider">
+<div class="banner-shop-slider">
+    <div class="wrap-item">
         @{
             var dataSlide1 = new ViewDataDictionary(ViewData)
             {
@@ -20,7 +21,7 @@
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide1)
         }
-        
+
         @{
             var dataSlide2 = new ViewDataDictionary(ViewData)
             {
@@ -32,7 +33,7 @@
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide2)
         }
-        
+
         @{
             var dataSlide3 = new ViewDataDictionary(ViewData)
             {
@@ -57,7 +58,7 @@
 
             @await Html.PartialAsync("~/Plugins/Widgets.NivoSlider/Views/_PublicInfo.SliderLine.cshtml", dataSlide4)
         }
-        
+
         @{
             var dataSlide5 = new ViewDataDictionary(ViewData)
             {
@@ -71,8 +72,3 @@
         }
     </div>
 </div>
-<script asp-location="Footer">
-    $(window).on('load', function () {
-        $('#nivo-slider').nivoSlider();
-    });
-</script>

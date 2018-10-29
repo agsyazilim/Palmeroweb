@@ -1,0 +1,11 @@
+﻿{
+  "Group": "Payment methods",
+  "FriendlyName": "kapida Ödeme",
+  "SystemName": "Payments.KapidaOdeme",
+  "Version": "1.00",
+  "SupportedVersions": [ "4.10" ],
+  "Author": "atilla kaya 05306452601",
+  "DisplayOrder": 1,
+  "FileName": "Nop.Plugin.Payments.KapidaOdeme.dll",
+  "Description": "Kapıda ödeme almanızı sağlar"
+}
