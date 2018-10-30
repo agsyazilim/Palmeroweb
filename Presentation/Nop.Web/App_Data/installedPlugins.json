@@ -4,12 +4,8 @@
   "ExternalAuth.Facebook",
   "Payments.CheckMoneyOrder",
   "Payments.Manual",
-  "Payments.Square",
-  "Payments.WorldpayUS",
-  "Payments.PayPalStandard",
   "Pickup.PickupInStore",
   "Shipping.FixedByWeightByTotal",
-  "Shipping.UPS",
   "Tax.FixedOrByCountryStateZip",
   "Widgets.GoogleAnalytics",
   "Widgets.Carousel",
@@ -17,8 +13,5 @@
   "Widgets.ABanner",
   "Widgets.NivoSlider",
   "Widgets.HeaderContactDetails",
-  "Payments.KapidaOdeme",
-  "Ürün Video",
-  "PromotionFeed.Froogle"
-  
+  "Payments.KapidaOdeme"
 ]

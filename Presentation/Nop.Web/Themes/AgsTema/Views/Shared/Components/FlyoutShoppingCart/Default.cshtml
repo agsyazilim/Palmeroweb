@@ -36,7 +36,7 @@
                                     @Html.Raw(item.AttributeInfo)
                                 </div>
                             }
-                            <div class="info-price"><span>@item.UnitPrice</span></div>
+                            <div class="info-price"><span>@item.UnitPrice.Replace("₺","") TL</span></div>
                             <div class="qty-product">
                                 
                                 <span class="qty-num">@item.Quantity  Adet</span>
@@ -48,7 +48,7 @@
         </ul>
         <div class="mini-cart-total">
             <label>@T("ShoppingCart.Totals.SubTotal"):</label>
-            <span>@Model.SubTotal</span>
+            <span>@Model.SubTotal.Replace("₺","") TL</span>
         </div>
         <div class="mini-cart-button">
             @if (Model.DisplayShoppingCartButton)

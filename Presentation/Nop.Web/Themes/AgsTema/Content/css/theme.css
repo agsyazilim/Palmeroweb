@@ -286,7 +286,7 @@ blockquote {
 	}
 
 	.smart-search-form input[type="text"] {
-		border: 2px solid #ccc;
+		border: 2px solid #fdb3d6;
 		color: #999;
 		height: 45px;
 		padding: 0 45px;
@@ -295,7 +295,7 @@ blockquote {
 	}
 
 	.smart-search-form input[type="submit"] {
-		background: #696969 none repeat scroll 0 0;
+		background: #fdb3d6 none repeat scroll 0 0;
 		color: #fff;
 		font-weight: 700;
 		height: 36px;
@@ -363,7 +363,7 @@ blockquote {
 }
 
 .header-mini-cart::before {
-	background: ##E4147E url("../images/home1/icon-cart.png") no-repeat scroll center center;
+	background: #E4147E url("../images/home1/icon-cart.png") no-repeat scroll center center;
 	content: "";
 	height: 45px;
 	left: -1px;
@@ -377,7 +377,7 @@ blockquote {
 }
 
 .total-mini-cart-price {
-	color: ##E4147E;
+	color: #E4147E;
 }
 
 .content-mini-cart {
@@ -521,7 +521,7 @@ blockquote {
 }
 
 .mini-cart-view {
-	background: #F9BC02 none repeat scroll 0 0;
+	background: #009FE3 none repeat scroll 0 0;
 }
 
 .mini-cart-button a {
@@ -553,7 +553,7 @@ blockquote {
 	}
 
 .mini-cart-checkout {
-	background: #FE9C00 none repeat scroll 0 0;
+	background: #009FE3 none repeat scroll 0 0;
 }
 
 .list-mini-cart-item {
@@ -575,7 +575,7 @@ blockquote {
 	}
 
 .title-category-dropdown {
-	background: #f9bc02 none repeat scroll 0 0;
+	background: #009FE3 none repeat scroll 0 0;
 	color: #fff;
 	cursor: pointer;
 	font-size: 14px;
@@ -621,7 +621,7 @@ blockquote {
 }
 
 .wrap-category-dropdown .expand-category-link {
-	background: #f9bc02 none repeat scroll 0 0;
+	background: #009FE3 none repeat scroll 0 0;
 	color: #fff;
 	display: block;
 	font-family: fontawesome;
@@ -730,7 +730,7 @@ blockquote {
 }
 
 .list-category-dropdown a:hover {
-	color: #FE9C00;
+	color: #009FE3;
 }
 
 .list-category-dropdown > li > a {
@@ -1216,7 +1216,7 @@ blockquote {
 	font-size: 14px;
 	font-weight: 700;
 	margin: 0 0 5px;
-    text-align: center;
+	text-align: center;
 }
 
 
@@ -4121,7 +4121,7 @@ form#product-details-form {
 .total-mini-cart-icon {
 	border: 2px solid #fdb3d6;
 	border-radius: 40px;
-	color: #fdb3d6;
+	color: #009FE3;
 	display: block;
 	font-size: 18px;
 	height: 40px;
@@ -9264,7 +9264,7 @@ ol.list-post-comment {
 }
 
 .form-my-account input[type="submit"]:hover {
-	background-color: #f9bc02;
+	background-color: #009FE3;
 }
 
 .form-my-account > p:last-child {
@@ -9676,7 +9676,7 @@ label {
 }
 
 	.wc-proceed-to-checkout button.checkout-button:hover {
-		background-color: #f9bc02;
+		background-color: #009FE3;
 	}
 
 .common-buttons input.button {
@@ -9688,7 +9688,7 @@ label {
 }
 
 	.common-buttons input.button:hover {
-		background: #f9bc02 none repeat scroll 0 0;
+		background: #009FE3 none repeat scroll 0 0;
 	}
 
 .coupon-code input.button {
@@ -9700,7 +9700,7 @@ label {
 }
 
 	.coupon-code input.button:hover {
-		background: #f9bc02 none repeat scroll 0 0;
+		background: #009FE3 none repeat scroll 0 0;
 	}
 
 .coupon-code input[type="text"] {
@@ -10797,7 +10797,7 @@ label {
 .product-info5 {
 	margin-top: 12px;
 	height: 65px !important;
-    text-align: center;
+	text-align: center;
 }
 
 	.product-info5 .title-product > a {
@@ -18439,7 +18439,7 @@ button.accordion.active:after {
 	display: inline-block;
 	min-width: 140px;
 	border: none;
-	background-color: #F9BC02;
+	background-color: #fdb3d6;
 	padding: 10px 30px;
 	text-align: center;
 	font-size: 15px;
@@ -18758,7 +18758,7 @@ ol, ul {
 }
 
 .opc .allow .step-title {
-	background-color: rgba(250, 187, 41, 0.9);
+	background-color: rgba(253, 179, 214, 0.9);
 	cursor: pointer;
 	height: 40px;
 }
@@ -20542,7 +20542,7 @@ button.bt-white {
 .search-input .button-1 {
 	min-width: 140px;
 	border: none;
-	background-color: #F9BC02;
+	background-color: #fdb3d6;
 	padding: 10px 30px;
 	text-align: center;
 	font-size: 15px;
@@ -20551,7 +20551,7 @@ button.bt-white {
 }
 
 	.search-input .button-1:hover {
-		background-color: #F9BC02;
+		background-color: #fdb3d6;
 	}
 
 .search-results {
@@ -20645,7 +20645,7 @@ button.bt-white {
 	text-transform: uppercase;
 }
 	.account-login .button-1:hover {
-		background-color: #F9BC02;
+		background-color: #fdb3d6;
 	}
 .sub-category-item{ padding: 10px;}
 .sub-category-item .title{ font-size: 12px;}

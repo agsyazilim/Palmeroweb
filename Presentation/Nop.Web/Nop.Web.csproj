@@ -73,6 +73,20 @@
     <None Include="wwwroot\js\slideshow\jquery.themepunch.revolution.js" />
     <None Include="wwwroot\js\slideshow\jquery.themepunch.revolution.min.js" />
     <None Include="wwwroot\js\TimeCircles.js" />
+    <None Include="wwwroot\lib\lightslider-master\.editorconfig" />
+    <None Include="wwwroot\lib\lightslider-master\.gitignore" />
+    <None Include="wwwroot\lib\lightslider-master\.jshintrc" />
+    <None Include="wwwroot\lib\lightslider-master\.travis.yml" />
+    <None Include="wwwroot\lib\lightslider-master\contributing.md" />
+    <None Include="wwwroot\lib\lightslider-master\dist\js\lightslider.js" />
+    <None Include="wwwroot\lib\lightslider-master\dist\js\lightslider.min.js" />
+    <None Include="wwwroot\lib\lightslider-master\Gruntfile.js" />
+    <None Include="wwwroot\lib\lightslider-master\LICENSE" />
+    <None Include="wwwroot\lib\lightslider-master\README.md" />
+    <None Include="wwwroot\lib\lightslider-master\src\js\.jshintrc" />
+    <None Include="wwwroot\lib\lightslider-master\src\js\lightslider.js" />
+    <None Include="wwwroot\lib\lightslider-master\test\.jshintrc" />
+    <None Include="wwwroot\lib\lightslider-master\test\lightslider_test.js" />
   </ItemGroup>
 
   <ItemGroup>

@@ -38,17 +38,17 @@
                         @if (!string.IsNullOrEmpty(Model.Price))
                         {
                             
-                            @Html.Raw(Model.Price).RenderHtmlContent().Replace("₺","TL") 
+                            @Html.Raw(Model.Price).RenderHtmlContent().Replace("₺","") 
                         }
                         else
                         {
-                            @Html.Raw(Model.Price).RenderHtmlContent().Replace("₺","TL")
+                            @Html.Raw(Model.Price).RenderHtmlContent().Replace("₺","")
                         }
-                         
+                         TL
                     </span>
                     @if (!string.IsNullOrWhiteSpace(Model.OldPrice))
                     {
-                        <del>@Model.OldPrice.Replace("₺", "TL")</del>
+                        <del>@Model.OldPrice.Replace("₺", "") TL</del>
                         <div class="detail-sale">% @Model.Discount İndirim</div>
                     }
                 </div>

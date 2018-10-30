@@ -63,12 +63,12 @@
                 <div class="info-price">
                     @if (!string.IsNullOrEmpty(Model.ProductPrice.OldPrice))
                     {
-                        <del>@Model.ProductPrice.OldPrice.Replace("₺", "TL")</del>
+                        <del>@Model.ProductPrice.OldPrice.Replace("₺", "") TL</del>
                     }
 
                     @if (!string.IsNullOrEmpty(Model.ProductPrice.Price))
                     {
-                        <span>@Model.ProductPrice.Price.Replace("₺", "TL") </span>
+                        <span>@Model.ProductPrice.Price.Replace("₺", "") TL</span>
                     }
                     else
                     {

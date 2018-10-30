@@ -13,6 +13,8 @@
     Html.AddMetaKeywordParts(Model.MetaKeywords);
     //page class
     Html.AppendPageCssClassParts("html-product-details-page");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/js/lightslider.js");
+    Html.AppendScriptParts(ResourceLocation.Footer, "~/lib/lightbox/dist/js/lightbox-plus-jquery.min.js");
 
     //canonical URL
     if (seoSettings.CanonicalUrlsEnabled)
